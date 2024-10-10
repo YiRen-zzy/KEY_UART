@@ -30,11 +30,11 @@ example_topic 每500ms发布一次话题，话题名字为send_data, 消息类�
 // 创建消息
         auto_aim_interfaces::msg::SendData message;
         message.header.stamp = this->now();
-        message.pitch = 3.0;
-        message.yaw = 2.0;
-        message.position.x = 1.0;
-        message.position.y = 2.0;
-        message.position.z = 3.0;
+        message.position_x = x;
+        message.position_y = y;
+        message.pitch = pitch;
+        message.yaw = yaw;
+        message.shot = shot;
 ```
 实际情况下在自己的代码中添加发布者，发布消息即可
 **rm_serial_driver**中订阅上述话题，触发sendData回调函数
@@ -52,9 +52,9 @@ ros2 topic echo /send_data
     SendPacket packet;
     packet.pitch = msg->pitch;
     packet.yaw = msg->yaw;
-    packet.target_x = msg->position.x;
-    packet.target_y = msg->position.y;
-    packet.target_z = msg->position.z;
+    packet.position_x = msg->position_x;
+    packet.position_y = msg->position_y;
+    packet.shot = msg->shot;
 ```
 发送和接受的数据包可在 `rm_serial_driver/packet.hpp` 中找到并修改，注意与电控端对应
 

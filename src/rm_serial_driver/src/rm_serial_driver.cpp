@@ -110,9 +110,9 @@ void RMSerialDriver::sendData(const auto_aim_interfaces::msg::SendData::SharedPt
     SendPacket packet;
     packet.pitch = msg->pitch;
     packet.yaw = msg->yaw;
-    packet.target_x = msg->position.x;
-    packet.target_y = msg->position.y;
-    packet.target_z = msg->position.z;
+    packet.position_x = msg->position_x;
+    packet.position_y = msg->position_y;
+    packet.shot = msg->shot;
 
     // 取消crc校验, 若要使用，将注释取消
     //crc16::Append_CRC16_Check_Sum(reinterpret_cast<uint8_t *>(&packet), sizeof(packet));

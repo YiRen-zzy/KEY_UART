@@ -25,9 +25,9 @@ struct SendPacket
   uint8_t header = 0xA5;  // 帧头
   float pitch;
   float yaw;
-  float target_x;
-  float target_y;
-  float target_z;
+  float position_x;
+  float position_y;
+  float shot;
   // uint16_t checksum = 0; // CRC校验位，未开启
 } __attribute__((packed));  // 保证结构体被连续编译，不插入对齐填充物
 

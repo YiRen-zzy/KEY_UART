@@ -28,7 +28,7 @@ private:
         float y = 0.0;
         float pitch = 0.0;
         float yaw = 0.0;
-
+        float shot =0.0;
         // 检查键盘输入并调整 pitch, yaw, position
         char key = getch(); // 获取键盘输入
 
@@ -48,16 +48,18 @@ private:
             yaw += 1;  // 向左旋转
         } else if (key == 'l') {
             yaw -= 1;  // 向右旋转
+        }else if (key == ' ') {
+            shot += 1;  // 发射子弹
         }
 
         // 更新消息内容
-        message.position.x = x;
-        message.position.y = y;
+        message.position_x = x;
+        message.position_y = y;
         message.pitch = pitch;
         message.yaw = yaw;
-
+        message.shot = shot;
         // 实时输出当前的移动和俯仰角旋转数据
-        RCLCPP_INFO(this->get_logger(), "Current Data -> Position: [x: %.2f, y: %.2f], Pitch: %.2f, Yaw: %.2f", x, y, pitch, yaw);
+        RCLCPP_INFO(this->get_logger(), "Current Data -> Position: [x: %.2f, y: %.2f], Pitch: %.2f, Yaw: %.2f, Shot: %.2f", x, y, pitch, yaw, shot);
 
         // 发布消息
         send_data_publisher_->publish(message);
